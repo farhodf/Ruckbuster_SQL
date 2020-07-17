@@ -1,0 +1,27 @@
+## Count customers in each city
+SELECT city, country,
+COUNT(customer_id)
+FROM country
+INNER JOIN city 
+ON country.country_id = city.country_id
+INNER JOIN address 
+ON city.city_id = address.city_id
+INNER JOIN customer
+ON address.address_id = customer.address_id 
+WHERE country.country = 'India'
+GROUP BY country.country, city.city
+ORDER BY count DESC
+
+#Top 10 cities with most sales 
+SELECT city, country,
+COUNT(customer_id)
+FROM country
+INNER JOIN city 
+ON country.country_id = city.country_id
+INNER JOIN address 
+ON city.city_id = address.city_id
+INNER JOIN customer
+ON address.address_id = customer.address_id 
+WHERE country.country = 'India'
+GROUP BY country.country, city.city
+ORDER BY count DESC
