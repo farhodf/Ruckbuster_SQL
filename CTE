@@ -1,0 +1,37 @@
+## Top 10 cities with most sales 
+SELECT city, country,
+SUM(amount)
+FROM country
+INNER JOIN city 
+ON country.country_id = city.country_id
+INNER JOIN address 
+ON city.city_id = address.city_id
+INNER JOIN customer
+ON address.address_id = customer.address_id 
+INNER JOIN payment
+ON customer.customer_id = payment.customer_id
+GROUP BY country, city
+ORDER BY SUM DESC
+LIMIT 10.
+
+
+## Top 5 paying customers
+SELECT customer.customer_id, first_name, last_name, city, country,
+SUM(amount) AS total_spend
+FROM country
+INNER JOIN city 
+ON country.country_id = city.country_id
+INNER JOIN address 
+ON city.city_id = address.city_id
+INNER JOIN customer
+ON address.address_id = customer.address_id 
+INNER JOIN payment
+ON customer.customer_id = payment.customer_id
+WHERE city.city = 'Saint-Denis' OR city.city = 'Cape Coral'
+OR city.city = 'Santa Brbara dOeste' 
+OR city.city = 'Apeldoorn' OR city.city = 'Molodetno' OR city.city = 'Qomsheh'
+OR city.city = 'London' OR city.city = 'Memphis' OR city.city = 'Richmond Hill'
+OR city.city = 'Tanza'
+GROUP BY customer.customer_id, first_name, last_name, country, city
+ORDER BY total_spend DESC
+LIMIT 5;
