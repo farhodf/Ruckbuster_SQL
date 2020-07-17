@@ -1,0 +1,29 @@
+SELECT MIN(rental_rate) AS min_rent,
+MAX(rental_rate) AS max_rent,
+AVG(rental_rate) AS avg_rent,
+COUNT(rental_rate) AS count_rent_values,
+COUNT (*) AS count_rows
+FROM film;
+
+SELECT MIN(rental_duration) AS min_rental_duration,
+MAX(rental_duration) AS max_rental_duration,
+AVG(rental_duration) AS avg_rental_duration 
+FROM film;
+
+
+SELECT 
+MODE() WITHIN GROUP (ORDER BY rental_duration)
+AS most_rented_duration
+FROM film;
+
+
+SELECT 
+MODE() WITHIN GROUP (ORDER BY last_update)
+AS how_recent_most_updates
+FROM film;
+
+
+SELECT 
+MODE() WITHIN GROUP (ORDER BY first_name)
+AS most_first_names
+FROM customer;
