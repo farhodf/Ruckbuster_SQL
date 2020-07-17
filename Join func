@@ -1,0 +1,28 @@
+## Count of Customers in each country 
+SELECT country,
+COUNT(customer_id) AS num_of_customers
+FROM country
+INNER JOIN city 
+ON country.country_id = city.country_id
+INNER JOIN address 
+ON city.city_id = address.city_id
+INNER JOIN customer
+ON address.address_id = customer.address_id 
+GROUP BY country
+ORDER BY num_of_customers  DESC
+LIMIT 10
+
+
+## Count customers in each city
+SELECT city, country,
+COUNT(customer_id)
+FROM country
+INNER JOIN city 
+ON country.country_id = city.country_id
+INNER JOIN address 
+ON city.city_id = address.city_id
+INNER JOIN customer
+ON address.address_id = customer.address_id 
+WHERE country.country = 'India'
+GROUP BY country.country, city.city
+ORDER BY count DESC
